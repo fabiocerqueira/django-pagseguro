@@ -47,7 +47,7 @@ class CarrinhoPagSeguro(object):
         self.cliente.update(kwargs)
 
     def add_item(self, item_id, descr, quant, valor, frete=None, peso=None):
-        item = ItemPagSeguro(id, descr, quant, valor, frete, peso)
+        item = ItemPagSeguro(item_id, descr, quant, valor, frete, peso)
         self.items.append(item)
 
     def form(self, template='pagseguro_form.html'):
