@@ -44,3 +44,13 @@ Configure o carrinho do PagSeguro de acordo com seu projeto, no exemplo abaixo c
  
 #### Capturando sinais do retorno
 
+
+### Referências
+
+Projetos que inspiraram esse:
+    - [https://github.com/pagseguro/python](https://github.com/pagseguro/python)
+    - [https://github.com/fnando/pagseguro](https://github.com/fnando/pagseguro)
+
+Documentação do PagSeguro:
+    - [Carrinho próprio](https://pagseguro.uol.com.br/desenvolvedor/carrinho_proprio.jhtml)
+    - [Retorno automático de dados](https://pagseguro.uol.com.br/desenvolvedor/retorno_automatico_de_dados.jhtml)
