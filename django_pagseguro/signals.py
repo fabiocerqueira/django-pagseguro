@@ -22,11 +22,11 @@ class PagSeguroSignal(object):
 
     def send(self):
         status_map = {
-            'Completo': pagamento_completo,
-            'Aguardando Completo': pagamento_completo,
             'Aprovado': pagamento_aprovado,
-            'Em analise': pagamento_em_analise,
-            'Cancelado': pagamento_completo,
+            'Cancelado': pagamento_cancelado,
+            'Aguardando Pagamento': pagamento_aguardando,
+            'Em Analise': pagamento_em_analise,
+            'Completo': pagamento_completo,
             'Devolvido': pagamento_devolvido,
         }
         pagamento_signal = status_map[self.status]
