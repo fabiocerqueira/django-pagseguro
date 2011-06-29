@@ -29,4 +29,18 @@ Configure a rota para url de retorno do PagSeguro no urls.py
 
 ### Como Usar?
 
+## Criando o Carrinho
+
+Importe o Carrinho do PagSeguro
+
+    from django_pagseguro.pagseguro import CarrinhoPagSeguro
+
+Configure o carrinho do PagSeguro de acordo com seu projeto, no exemplo abaixo compra de Crédito
+
+    carrinho = CarrinhoPagSeguro(ref_transacao=1)
+    carrinho.set_cliente(email='email@cliente.com', cep='60000000')
+    carrinho.add_item(item_id=1, descr='Crédito', quant=1, valor=35.53)
+    form_pagseguro = carrinho.form()    # Form do pagseguro para usar no template de acordo com as configurações 
  
+## Capturando sinais do retorno
+
