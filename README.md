@@ -62,6 +62,17 @@ Signals específicos para cada status do pagamento:
 * `pagamento_completo`: Completo
 * `pagamento_devolvido`: Devolvido
 
+*Capturando o sinal e processando os dados de retorno do PagSeguro*
+
+    from django_pagseguro.signals import pagamento_aprovado
+    ...
+    def liberar_pedido(sender, **kwargs):
+        ref = sender.dados['Referencia']
+        # aqui você deve executar seu código para liberar o pedido para a Referência
+    ...
+    pagamento_atualizado.connect(liberar_pedido)
+ 
+
 ### Referências
 
 Projetos que inspiraram esse:
