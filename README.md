@@ -27,6 +27,6 @@ Configure a rota para url de retorno do PagSeguro no urls.py
         ...
     )
 
-### Comoo Usar?
+### Como Usar?
 
  
