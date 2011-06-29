@@ -10,7 +10,11 @@
         <input type="hidden" name="item_descr_{{ forloop.counter }}" value="{{ item.descr }}" />
         <input type="hidden" name="item_quant_{{ forloop.counter }}" value="{{ item.quant }}" />
         <input type="hidden" name="item_valor_{{ forloop.counter }}" value="{{ item.valor }}" />
-        <input type="hidden" name="item_frete_{{ forloop.counter }}" value="{{ item.frete }}" />
-        <input type="hidden" name="item_peso_{{ forloop.counter }}" value="{{ item.peso }}" />
+        {% if item.frete %}
+            <input type="hidden" name="item_frete_{{ forloop.counter }}" value="{{ item.frete }}" />
+        {% endif %}
+        {% if item.peso %}
+            <input type="hidden" name="item_peso_{{ forloop.counter }}" value="{{ item.peso }}" />
+        {% endif %}
     {% endfor %}
 </form>
