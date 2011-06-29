@@ -70,7 +70,7 @@ Signals específicos para cada status do pagamento:
         ref = sender.dados['Referencia']
         # aqui você deve executar seu código para liberar o pedido para a Referência
     ...
-    pagamento_atualizado.connect(liberar_pedido)
+    pagamento_aprovado.connect(liberar_pedido)
  
 
 ### Referências
