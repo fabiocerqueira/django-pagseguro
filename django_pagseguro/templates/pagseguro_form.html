@@ -1,0 +1,20 @@
+<form action="https://pagseguro.uol.com.br/security/webpagamentos/webpagto.aspx" method="POST">
+    <input type="hidden" name="moeda" value="{{ moeda }}" /> 
+    <input type="hidden" name="tipo" value="{{ tipo }}" /> 
+    <input type='hidden' name='encoding' value='{{ encoding }}' /> 
+    <input type="hidden" name="ref_transacao" value="{{ ref_transacao}}" /> 
+    <input type="hidden" name="email_cobranca" value="{{ email_cobranca }}" /> 
+    <input type="hidden" name="extras" value="{{ extras }}" /> 
+    <input type="hidden" name="tipo_frete" value="{{ tipo_frete }}" /> 
+    {% for k,v in cliente.items %}
+        <input type="hidden" name="cliente_{{ k }}" value="{{ v }}" /> 
+    {% endfor %}
+    {% for item in items %}
+        <input type="hidden" name="item_id_{{ forloop.counter }}" value="{{ item.id }}" /> 
+        <input type="hidden" name="item_descr_{{ forloop.counter }}" value="{{ item.descr }}" /> 
+        <input type="hidden" name="item_quant_{{ forloop.counter }}" value="{{ item.quant }}" /> 
+        <input type="hidden" name="item_valor_{{ forloop.counter }}" value="{{ item.valor }}" /> 
+        <input type="hidden" name="item_frete_{{ forloop.counter }}" value="{{ item.frete }}" /> 
+        <input type="hidden" name="item_peso_{{ forloop.counter }}" value="{{ item.peso }}" /> 
+    {% endfor %}
+</form> 
