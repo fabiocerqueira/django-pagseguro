@@ -62,7 +62,7 @@ Signals específicos para cada status do pagamento:
 * `pagamento_completo`: Completo
 * `pagamento_devolvido`: Devolvido
 
-*Capturando o sinal e processando os dados de retorno do PagSeguro*
+**Capturando o sinal e processando os dados de retorno do PagSeguro**
 
     from django_pagseguro.signals import pagamento_aprovado
     ...
