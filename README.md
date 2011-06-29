@@ -47,13 +47,13 @@ Configure o carrinho do PagSeguro de acordo com seu projeto, no exemplo abaixo c
 O django-pagseguro foi feito para que o desenvolvedor decida como vai tratar o retorno do PagSeguro, 
 portanto os dados enviados pelo PagSeguro não são alterados, eles são encaminhados através de um signal do django.
 
-Existem duas opções para capturar o retorno, de forma global ou específica para cada estado do pagamento 
+Existem duas opções para capturar o retorno, de forma global ou específica para cada estado do pagamento.
 
 Signal Global:
 
-* `pagamento_atualizado`
+* `pagamento_atualizado`: dispara em qualquer atualização do pagamento
 
-Signals específicos para cada status do pagamento
+Signals específicos para cada status do pagamento:
 
 * `pagamento_aprovado`: Arovado
 * `pagamento_cancelado`: Cancelado
