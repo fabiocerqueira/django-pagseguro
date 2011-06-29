@@ -51,12 +51,7 @@ class CarrinhoPagSeguro(object):
         self.items.append(item)
 
     def form(self, template='pagseguro_form.html'):
-        contexto = {
-            'items': self.items,
-            'cliente': self.cliente,
-        }
-        contexto.update(self.config)
-        form_str = render_to_string(template, contexto)
+        form_str = render_to_string(template, vars(self))
         return form_str
 
     def __repr__(self):
