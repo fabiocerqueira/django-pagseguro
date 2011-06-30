@@ -9,8 +9,8 @@ import time
 
 
 class ItemPagSeguro(object):
-    def __init__(self, item_id, descr, quant, valor, frete=None, peso=None):
-        self.id = item_id
+    def __init__(self, cod, descr, quant, valor, frete=0, peso=0):
+        self.cod = cod
         self.descr = descr
         self.quant = quant
         self._valor = valor
@@ -46,8 +46,7 @@ class CarrinhoPagSeguro(object):
         kwargs = dict((k, v) for k, v in kwargs.items() if k in campos_validos)
         self.cliente.update(kwargs)
 
-    def add_item(self, item_id, descr, quant, valor, frete=None, peso=None):
-        item = ItemPagSeguro(item_id, descr, quant, valor, frete, peso)
+    def add_item(self, item):
         self.items.append(item)
 
     def form(self, template='pagseguro_form.html'):
@@ -70,9 +69,11 @@ def validar_dados(dados):
     if retorno == 'VERIFICADO':
         ps_aviso = PagSeguroSignal(dados)
         ps_aviso.send()
+        return True
     else:
         erro_log = getattr(settings, 'PAGSEGURO_ERRO_LOG', '')
         if erro_log:
             f = open(erro_log, 'a') 
             f.write("%s - dados: %s - retorno: %s\n" % (time.ctime(), params, retorno))
             f.close()
+        return False

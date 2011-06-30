@@ -6,7 +6,7 @@
         <input type="hidden" name="cliente_{{ k }}" value="{{ v }}" />
     {% endfor %}
     {% for item in items %}
-        <input type="hidden" name="item_id_{{ forloop.counter }}" value="{{ item.id }}" />
+        <input type="hidden" name="item_id_{{ forloop.counter }}" value="{{ item.cod }}" />
         <input type="hidden" name="item_descr_{{ forloop.counter }}" value="{{ item.descr }}" />
         <input type="hidden" name="item_quant_{{ forloop.counter }}" value="{{ item.quant }}" />
         <input type="hidden" name="item_valor_{{ forloop.counter }}" value="{{ item.valor }}" />
