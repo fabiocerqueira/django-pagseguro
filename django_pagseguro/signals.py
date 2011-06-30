@@ -18,6 +18,7 @@ class PagSeguroSignal(object):
     def __init__(self, dados):
         status = dados['StatusTransacao']
         self.status = normalize('NFKD', status.decode('utf-8')).encode('ASCII','ignore')
+        self.referencia = dados['Referencia']
         self.dados = dados
 
     def send(self):

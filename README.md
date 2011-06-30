@@ -67,7 +67,8 @@ Signals específicos para cada status do pagamento:
     from django_pagseguro.signals import pagamento_aprovado
     ...
     def liberar_pedido(sender, **kwargs):
-        ref = sender.dados['Referencia']
+        ref = sender.referencia
+        tipo_pagamento = sender.dados['TipoPagamento'] # exemplo de como pegar informações enviada pelo PagSeguro
         # aqui você deve executar seu código para liberar o pedido para a Referência
     ...
     pagamento_aprovado.connect(liberar_pedido)
