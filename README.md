@@ -72,6 +72,10 @@ Signals específicos para cada status do pagamento:
         # aqui você deve executar seu código para liberar o pedido para a Referência
     ...
     pagamento_aprovado.connect(liberar_pedido)
+
+### Autor
+
+* [Fábio Cerqueira](https://github.com/fabiocerqueira)
  
 ### Colaboradores
 
