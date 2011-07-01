@@ -9,7 +9,23 @@ import time
 
 
 class ItemPagSeguro(object):
+    """
+    ItemPagSeguro é usado no CarrinhoPagSeguro para representar
+    cada Item de compra.
+
+    O frete e o valor são convertidos para formato exigido para o PagSeguro.
+    Regra do PagSeguro: valor real * 100.
+        Dinheiro     Decimal/Float       PagSeguro
+        R$ 1,50      1.50                150
+        R$ 32,53     32.53               3253
+    """
     def __init__(self, cod, descr, quant, valor, frete=0, peso=0):
+        """
+        O parâmetro cod deve ser único por CarrinhoPagSeguro
+
+        Os parâmetros frete e peso são opcionais, os outros são
+        obrigatórios
+        """
         self.cod = cod
         self.descr = descr
         self.quant = quant
@@ -27,7 +43,32 @@ class ItemPagSeguro(object):
 
 
 class CarrinhoPagSeguro(object):
+    """
+    CarrinhoPagSeguro deve ser criado para gerar o Form para o PagSeguro.
+
+    As configurações do carrinho, cliente e itens do pedido são definidas
+    usando esta classe.
+
+    Os atributos de configuração geral do carrinho são feitas no atributo
+    self.config, os possíveis atributos podem ser encontrados na documentação
+    oficial do PagSeguro:
+        https://pagseguro.uol.com.br/desenvolvedor/carrinho_proprio.jhtml#rmcl
+
+    Configurações de clientes deve ser feita através do método set_cliente.
+
+    Para adicionar Items ao carrinho use método add_item.
+
+    Para obter o HTML do Form do PagSeguro com o botão de Comprar use
+    o método form.
+    """
     def __init__(self, **kwargs):
+        """
+        Cria o CarrinhoPagSeguro com dados iniciais baseado na documentação oficial
+        do PagSeguro.
+
+        A constante settings.PAGSEGURO_EMAIL_COBRANCA deve ser configurada com o email
+        usado na sua conta do PagSeguro.
+        """
         self.cliente = {}
         self.items = []
         self.config = {
@@ -40,6 +81,16 @@ class CarrinhoPagSeguro(object):
         self.config.update(kwargs)
 
     def set_cliente(self, **kwargs):
+        """
+        Define as configurações do cliente, essas informações são opcionais,
+        mas se tiver essa informações é interessante defini-las para facilitar
+        para o cliente no site do PagSeguro.
+
+        Os campos válidos são: nome, cep, end, num, compl, bairro, cidade, uf, pais,
+        ddd, tel, email
+
+        IMPORTANTE: Todos os valores devem ser passados como parâmetros nomeados.
+        """
         campos_validos = ['nome', 'cep', 'end', 'num', 'compl',
                           'bairro', 'cidade', 'uf', 'pais',
                           'ddd', 'tel', 'email' ]
@@ -47,9 +98,21 @@ class CarrinhoPagSeguro(object):
         self.cliente.update(kwargs)
 
     def add_item(self, item):
+        """
+        Adiciona um novo ItemPagSeguro ao carrinho.
+
+        Para mais informações consulte a documentação da classe ItemPagSeguro
+        """
         self.items.append(item)
 
     def form(self, template='pagseguro_form.html'):
+        """
+        Realiza o render do formulário do PagSeguro baseado no template.
+
+        Por padrão o template usado é 'django_pagaseguro/templates/pagseguro_form.html',
+        porém é possível sobreescrever o template ou passar outro template que desejar
+        como parâmetro.
+        """
         form_str = render_to_string(template, vars(self))
         return form_str
 
@@ -58,6 +121,28 @@ class CarrinhoPagSeguro(object):
 
 
 def validar_dados(dados):
+    """
+    No retorno automático do PagSeguro essa funcão é responsável
+    por validar os dados + token do PagSeguro e emitir o Sinais para
+    as outras aplicações.
+
+    Para mais informações sobre o retorno automático e validação do PagSeguro
+    consulte:
+        https://pagseguro.uol.com.br/desenvolvedor/retorno_automatico_de_dados.jhtml#rmcl
+
+    Caso os dados não sejam verificados a função retorna False e se
+    a constante PAGSEGURO_ERRO_LOG estiver definida com um arquivo de log, as informações
+    são gravadas.
+
+
+    A constante settings.PAGSEGURO_TOKEN deve ser configurada com TOKEN fornecido pelo
+    PagSeguro.
+
+    A constante settings.PAGSEGURO_ERRO_LOG é opcional e deve ser um arquivo com permissão de escrita,
+    exemplo:
+        PAGSEGURO_ERRO_LOG = '/tmp/pagseguro_erro.log'
+
+    """
     params = dados.copy()
     params.update({
         'Comando': 'validar',
