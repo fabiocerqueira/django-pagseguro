@@ -55,7 +55,7 @@ Signal Global:
 
 Signals específicos para cada status do pagamento:
 
-* `pagamento_aprovado`: Arovado
+* `pagamento_aprovado`: Aprovado
 * `pagamento_cancelado`: Cancelado
 * `pagamento_aguardando`: Aguardando Pagamento
 * `pagamento_em_analise`: Em Análise
@@ -73,6 +73,9 @@ Signals específicos para cada status do pagamento:
     ...
     pagamento_aprovado.connect(liberar_pedido)
  
+### Colaboradores
+
+* [Mário Chaves](https://github.com/macndesign)
 
 ### Referências
 
