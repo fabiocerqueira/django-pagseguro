@@ -70,7 +70,7 @@ class CarrinhoPagSeguro(object):
         usado na sua conta do PagSeguro.
         """
         self.cliente = {}
-        self.items = []
+        self.itens = []
         self.config = {
             'tipo' : 'CP',
             'moeda': 'BRL',
@@ -103,7 +103,7 @@ class CarrinhoPagSeguro(object):
 
         Para mais informações consulte a documentação da classe ItemPagSeguro
         """
-        self.items.append(item)
+        self.itens.append(item)
 
     def form(self, template='pagseguro_form.html'):
         """
