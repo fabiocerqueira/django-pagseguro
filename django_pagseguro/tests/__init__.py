@@ -12,4 +12,5 @@ class ConfiguracoesDaApp(unittest.TestCase):
         from django.conf import settings
         self.assertTrue(hasattr(settings, 'PAGSEGURO_EMAIL_COBRANCA'))
         self.assertTrue(hasattr(settings, 'PAGSEGURO_TOKEN'))
+        self.assertTrue(hasattr(settings, 'PAGSEGURO_URL_RETORNO'))
         self.assertTrue(hasattr(settings, 'PAGSEGURO_URL_FINAL'))
