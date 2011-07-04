@@ -5,7 +5,7 @@ from django.conf import settings
 class PagSeguroRetornoViewTest(unittest.TestCase):
     def test_view_retorno_com_get(self):
         c = Client()
-        res = c.get('/pagseguro/retorno/')
+        res = c.get(settings.PAGSEGURO_URL_RETORNO)
         self.assertEquals(res.status_code, 302)
         url_final_valida = res['location'].endswith(settings.PAGSEGURO_URL_FINAL)
         self.assertTrue(url_final_valida)
@@ -17,7 +17,7 @@ class PagSeguroRetornoViewTest(unittest.TestCase):
         pagseguro._req_pagseguro = mock_req_pagseguro
         c = Client()
         dados = {'StatusTransacao':'Aprovado', 'Referencia':42}
-        res = c.post('/pagseguro/retorno/', dados)
+        res = c.post(settings.PAGSEGURO_URL_RETORNO, dados)
         self.assertEquals(res.content, 'OK')
 
     def test_retorno_post_falha(self):
@@ -27,5 +27,5 @@ class PagSeguroRetornoViewTest(unittest.TestCase):
         pagseguro._req_pagseguro = mock_req_pagseguro
         c = Client()
         dados = {'StatusTransacao':'Aprovado', 'Referencia':42}
-        res = c.post('/pagseguro/retorno/', dados)
+        res = c.post(settings.PAGSEGURO_URL_RETORNO, dados)
         self.assertEquals(res.content, 'FALHA')
