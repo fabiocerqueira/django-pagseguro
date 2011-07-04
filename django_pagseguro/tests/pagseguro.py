@@ -76,4 +76,21 @@ class PagSeguroCarrinhoCase(unittest.TestCase):
             self.assertIn('<input type="hidden" name="item_descr_%d" value="%s" />' % (i, item.descr), form_pagseguro)
             self.assertIn('<input type="hidden" name="item_quant_%d" value="%s" />' % (i, item.quant), form_pagseguro)
             self.assertIn('<input type="hidden" name="item_valor_%d" value="%s" />' % (i, item.valor), form_pagseguro)
- 
+
+
+class PagSeguroRetornoTest(unittest.TestCase):
+    def test_retorno_verificado(self):
+        from django_pagseguro import pagseguro
+        def mock_req_pagseguro(params):
+            return 'VERIFICADO'
+        pagseguro._req_pagseguro = mock_req_pagseguro
+        valido = pagseguro.validar_dados({'StatusTransacao':'Aprovado', 'Referencia':42})
+        self.assertTrue(valido)
+
+    def test_retorno_falso(self):
+        from django_pagseguro import pagseguro
+        def mock_req_pagseguro(params):
+            return 'FALSO'
+        pagseguro._req_pagseguro = mock_req_pagseguro
+        valido = pagseguro.validar_dados({'StatusTransacao':'Aprovado', 'Referencia':42})
+        self.assertFalse(valido)

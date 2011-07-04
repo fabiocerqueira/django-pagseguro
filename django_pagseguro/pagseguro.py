@@ -120,6 +120,15 @@ class CarrinhoPagSeguro(object):
         return "<CarrinhoPagSeguro - email:%s - %s items>" % (self.config['email_cobranca'], len(self.items))
 
 
+def _req_pagseguro(params):
+    """ Faz requisição de validação ao PagSeguro """
+    params_encode = urllib.urlencode(params)
+    res = urllib.urlopen('https://pagseguro.uol.com.br/Security/NPI/Default.aspx', params_encode)
+    retorno = res.read()
+    res.close()
+    return retorno
+
+
 def validar_dados(dados):
     """
     No retorno automático do PagSeguro essa funcão é responsável
@@ -148,9 +157,7 @@ def validar_dados(dados):
         'Comando': 'validar',
         'Token': settings.PAGSEGURO_TOKEN,
     })
-    params_encode = urllib.urlencode(params)
-    res = urllib.urlopen('https://pagseguro.uol.com.br/Security/NPI/Default.aspx', params_encode)
-    retorno = res.read()
+    retorno = _req_pagseguro(params)
     if retorno == 'VERIFICADO':
         ps_aviso = PagSeguroSignal(dados)
         ps_aviso.send()
