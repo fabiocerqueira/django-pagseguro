@@ -79,6 +79,7 @@ Signals específicos para cada status do pagamento:
 ### Colaboradores
 
 * [Mário Chaves](https://github.com/macndesign)
+* [Bruno Gola](https://github.com/brunogola)
 
 ### Referências
 
