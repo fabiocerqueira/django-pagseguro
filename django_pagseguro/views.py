@@ -2,7 +2,10 @@
 from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import redirect
-from django.views.decorators.csrf import csrf_exempt
+try:
+    from django.views.decorators.csrf import csrf_exempt
+except ImportError:
+    csrf_exempt = lambda f: f # para django < 1.2
 
 from pagseguro import validar_dados
 
