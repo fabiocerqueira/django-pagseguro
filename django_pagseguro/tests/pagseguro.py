@@ -35,7 +35,7 @@ class PagSeguroCarrinhoCase(unittest.TestCase):
         self.assertEquals(carrinho.cliente['cep'], '60000000')
         self.assertEquals(carrinho.cliente['end'], 'Rua Beltrano de Sousa')
 
-    def test_adicao_de_items(self):
+    def test_adicao_de_itens(self):
         from django_pagseguro.pagseguro import ItemPagSeguro, CarrinhoPagSeguro
         from django.conf import settings
 

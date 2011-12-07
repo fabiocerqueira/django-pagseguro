@@ -117,7 +117,7 @@ class CarrinhoPagSeguro(object):
         return form_str
 
     def __repr__(self):
-        return "<CarrinhoPagSeguro - email:%s - %s items>" % (self.config['email_cobranca'], len(self.items))
+        return "<CarrinhoPagSeguro - email:%s - %s itens>" % (self.config['email_cobranca'], len(self.itens))
 
 
 def _req_pagseguro(params):
