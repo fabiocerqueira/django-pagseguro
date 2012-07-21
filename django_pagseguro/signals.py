@@ -48,6 +48,7 @@ class PagSeguroSignal(object):
             'Aprovado': pagamento_aprovado,
             'Cancelado': pagamento_cancelado,
             'Aguardando Pagamento': pagamento_aguardando,
+            'Aguardando Pagto': pagamento_aguardando, # PagSeguro uso abreviado em alguns casos
             'Em Analise': pagamento_em_analise,
             'Completo': pagamento_completo,
             'Devolvido': pagamento_devolvido,
