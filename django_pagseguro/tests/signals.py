@@ -1,5 +1,8 @@
 #-*- coding: utf-8 -*-
-from django.utils import unittest
+try:
+    from django.utils import unittest
+except ImportError:
+    import unittest
 
 class PagSeguroSignal(unittest.TestCase):
     def test_emissao_de_signal_aprovado(self):

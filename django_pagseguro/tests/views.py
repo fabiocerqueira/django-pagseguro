@@ -1,4 +1,7 @@
-from django.utils import unittest
+try:
+    from django.utils import unittest
+except ImportError:
+    import unittest
 from django.test.client import Client
 from django.conf import settings
 

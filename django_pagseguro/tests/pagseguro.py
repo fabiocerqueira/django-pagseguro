@@ -1,4 +1,7 @@
-from django.utils import unittest
+try:
+    from django.utils import unittest
+except ImportError:
+    import unittest
 from django.utils.safestring import SafeUnicode
 
 class PagSeguroCarrinhoCase(unittest.TestCase):

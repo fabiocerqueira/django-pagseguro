@@ -1,6 +1,9 @@
-from django.utils import unittest
+try:
+    from django.utils import unittest
+except ImportError:
+    import unittest
 
-import django_pagseguro 
+import django_pagseguro
 
 from django_pagseguro.tests.signals import *
 from django_pagseguro.tests.pagseguro import *
