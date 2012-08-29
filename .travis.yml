@@ -9,4 +9,4 @@ env:
   - DJANGO_VERSION=1.4
 install:
  - pip install -q Django==$DJANGO_VERSION --use-mirrors
-script: python django_pagseguro/tests/run_tests.py
+script: python runtests.py
