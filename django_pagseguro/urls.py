@@ -10,7 +10,9 @@ def pagseguro_urlpatterns(url_name='django_pagseguro_retorno'):
             settings.PAGSEGURO_URL_RETORNO = '/pagseguro/retorno/'
     """
     url_retorno = settings.PAGSEGURO_URL_RETORNO.lstrip('/')
-    urlpatterns = patterns('django_pagseguro.views', 
+    urlpatterns = patterns('django_pagseguro.views',
         url(r'^%s$' % url_retorno, 'retorno', name=url_name),
     )
-    return urlpatterns 
+    return urlpatterns
+
+urlpatterns = pagseguro_urlpatterns()
