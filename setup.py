@@ -8,7 +8,7 @@ def read(fname):
 
 setup(
     name='django-pagseguro',
-    version="1.0",
+    version="1.1",
     author='Fábio Cerqueira',
     author_email='cerqueirasfabio@gmail.com',
     maintainer="Fábio Cerqueira",
