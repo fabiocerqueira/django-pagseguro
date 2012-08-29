@@ -66,9 +66,9 @@ class PagSeguroCarrinhoCase(unittest.TestCase):
         carrinho.set_cliente(email='seu@email.com')
         carrinho.add_item(ItemPagSeguro(1, "Camisa Azul", 2, 32.40))
         carrinho.add_item(ItemPagSeguro(2, "Camisa Verde", 3, 35.50))
- 
+
         form_pagseguro = carrinho.form()
-        self.assertIsInstance(form_pagseguro, SafeUnicode)
+        self.assertTrue(isinstance(form_pagseguro, SafeUnicode))
         self.assertIn('https://pagseguro.uol.com.br/security/webpagamentos/webpagto.aspx', form_pagseguro)
         for k,v in carrinho.config.items():
             self.assertIn('<input type="hidden" name="%s" value="%s" />' % (k, v), form_pagseguro)
