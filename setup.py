@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-pagseguro',
-    version="1.2",
+    version="1.2.1",
     author='Fábio Cerqueira',
     author_email='cerqueirasfabio@gmail.com',
     maintainer="Fábio Cerqueira",

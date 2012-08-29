@@ -1,1 +1,2 @@
 include README.rst
+include django_pagseguro/templates/pagseguro_form.html
