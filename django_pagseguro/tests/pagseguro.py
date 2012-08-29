@@ -69,16 +69,16 @@ class PagSeguroCarrinhoCase(unittest.TestCase):
 
         form_pagseguro = carrinho.form()
         self.assertTrue(isinstance(form_pagseguro, SafeUnicode))
-        self.assertIn('https://pagseguro.uol.com.br/security/webpagamentos/webpagto.aspx', form_pagseguro)
+        self.assertTrue('https://pagseguro.uol.com.br/security/webpagamentos/webpagto.aspx' in form_pagseguro)
         for k,v in carrinho.config.items():
-            self.assertIn('<input type="hidden" name="%s" value="%s" />' % (k, v), form_pagseguro)
+            self.assertTrue('<input type="hidden" name="%s" value="%s" />' % (k, v) in form_pagseguro)
         for k,v in carrinho.cliente.items():
-            self.assertIn('<input type="hidden" name="cliente_%s" value="%s" />' % (k, v), form_pagseguro)
+            self.assertTrue('<input type="hidden" name="cliente_%s" value="%s" />' % (k, v) in form_pagseguro)
         for i,item in enumerate(carrinho.itens, 1):
-            self.assertIn('<input type="hidden" name="item_id_%d" value="%s" />' % (i, item.cod), form_pagseguro)
-            self.assertIn('<input type="hidden" name="item_descr_%d" value="%s" />' % (i, item.descr), form_pagseguro)
-            self.assertIn('<input type="hidden" name="item_quant_%d" value="%s" />' % (i, item.quant), form_pagseguro)
-            self.assertIn('<input type="hidden" name="item_valor_%d" value="%s" />' % (i, item.valor), form_pagseguro)
+            self.assertTrue('<input type="hidden" name="item_id_%d" value="%s" />' % (i, item.cod) in form_pagseguro)
+            self.assertTrue('<input type="hidden" name="item_descr_%d" value="%s" />' % (i, item.descr) in form_pagseguro)
+            self.assertTrue('<input type="hidden" name="item_quant_%d" value="%s" />' % (i, item.quant) in form_pagseguro)
+            self.assertTrue('<input type="hidden" name="item_valor_%d" value="%s" />' % (i, item.valor) in form_pagseguro)
 
 
 class PagSeguroRetornoTest(unittest.TestCase):
