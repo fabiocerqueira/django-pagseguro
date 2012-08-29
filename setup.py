@@ -18,7 +18,7 @@ setup(
         'Django>=1.0'
     ],
     description = 'A pluggable Django application for integrating PagSeguro payment system',
-    long_description=read('README.md'),
+    long_description=read('README.rst'),
     packages=find_packages(),
     include_package_data=True,
     classifiers=[
