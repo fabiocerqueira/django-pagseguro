@@ -8,11 +8,11 @@ def read(fname):
 
 setup(
     name='django-pagseguro',
-    version="beta",
+    version="1.0",
     author='Fábio Cerqueira',
     author_email='cerqueirasfabio@gmail.com',
-    maintainer="Bruno Gola",
-    maintainer_email="brunogoal@gmail.com",
+    maintainer="Fábio Cerqueira",
+    maintainer_email="cerqueirasfabio@gmail.com",
     url='http://github.com/fabiocerqueira/django-pagseguro',
     install_requires=[
         'Django>=1.0'
