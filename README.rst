@@ -3,7 +3,7 @@ django-pagseguro
 
 
 .. image:: https://secure.travis-ci.org/fabiocerqueira/django-pagseguro.png?branch=master
-        :target: https://secure.travis-ci.org/#!/fabiocerqueira/django-pagseguro
+        :target: https://travis-ci.org/fabiocerqueira/django-pagseguro
 
 Aplicação para facilitar integração do django com pagseguro.
 
