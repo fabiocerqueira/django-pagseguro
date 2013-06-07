@@ -8,6 +8,11 @@ import urllib
 import time
 
 
+PAGSEGURO_EMAIL_COBRANCA = settings.PAGSEGURO_EMAIL_COBRANCA
+PAGSEGURO_TOKEN = settings.PAGSEGURO_TOKEN
+PAGSEGURO_ERRO_LOG = getattr(settings, 'PAGSEGURO_ERRO_LOG', '')
+
+
 class ItemPagSeguro(object):
     """
     ItemPagSeguro é usado no CarrinhoPagSeguro para representar
@@ -61,7 +66,7 @@ class CarrinhoPagSeguro(object):
     Para obter o HTML do Form do PagSeguro com o botão de Comprar use
     o método form.
     """
-    def __init__(self, **kwargs):
+    def __init__(self, email_cobranca=PAGSEGURO_EMAIL_COBRANCA, **kwargs):
         """
         Cria o CarrinhoPagSeguro com dados iniciais baseado na documentação oficial
         do PagSeguro.
@@ -75,7 +80,7 @@ class CarrinhoPagSeguro(object):
             'tipo' : 'CP',
             'moeda': 'BRL',
             'encoding': 'UTF-8',
-            'email_cobranca': settings.PAGSEGURO_EMAIL_COBRANCA,
+            'email_cobranca': email_cobranca,
             'ref_transacao': '',
         }
         self.config.update(kwargs)
@@ -129,7 +134,7 @@ def _req_pagseguro(params):
     return retorno
 
 
-def validar_dados(dados):
+def validar_dados(dados, token=PAGSEGURO_TOKEN, erro_log=PAGSEGURO_ERRO_LOG):
     """
     No retorno automático do PagSeguro essa funcão é responsável
     por validar os dados + token do PagSeguro e emitir o Sinais para
@@ -155,7 +160,7 @@ def validar_dados(dados):
     params = dados.copy()
     params.update({
         'Comando': 'validar',
-        'Token': settings.PAGSEGURO_TOKEN,
+        'Token': token,
     })
     retorno = _req_pagseguro(params)
     if retorno == 'VERIFICADO':
@@ -163,7 +168,6 @@ def validar_dados(dados):
         ps_aviso.send()
         return True
     else:
-        erro_log = getattr(settings, 'PAGSEGURO_ERRO_LOG', '')
         if erro_log:
             f = open(erro_log, 'a') 
             f.write("%s - dados: %s - retorno: %s\n" % (time.ctime(), params, retorno))
