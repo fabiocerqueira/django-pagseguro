@@ -89,6 +89,7 @@ Colaboradores
 
 - `Mário Chaves <https://github.com/macndesign>`_
 - `Bruno Gola <https://github.com/brunogola>`_
+- `Caio Ariede <https://github.com/caioariede>`_
 
 Referências
 -----------
