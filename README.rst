@@ -4,6 +4,12 @@ django-pagseguro
 
 .. image:: https://secure.travis-ci.org/fabiocerqueira/django-pagseguro.png?branch=master
         :target: https://travis-ci.org/fabiocerqueira/django-pagseguro
+.. image:: https://drone.io/github.com/fabiocerqueira/django-pagseguro/status.png
+        :target: https://drone.io/github.com/fabiocerqueira/django-pagseguro/latest
+.. image:: https://pypip.in/v/django-pagseguro/badge.png
+        :target: https://crate.io/packages/django-pagseguro/
+.. image:: https://pypip.in/d/django-pagseguro/badge.png
+        :target: https://crate.io/packages/django-pagseguro/
 
 Aplicação para facilitar integração do django com pagseguro.
 
