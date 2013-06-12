@@ -9,6 +9,12 @@ except ImportError:
 
 from pagseguro import validar_dados
 
+import logging
+
+
+logger = logging.getLogger('django_pagseguro')
+
+
 @csrf_exempt
 def retorno(request):
     """
@@ -25,6 +31,12 @@ def retorno(request):
         request.encoding = 'ISO-8859-1'
         dados = dict((k, v.encode('ISO-8859-1')) for k, v in request.POST.items())
         valido = validar_dados(dados)
+        logger.info('Retorno de pagamento por PagSeguro', extra={
+            'data': {
+                'dados': dados,
+                'valido': valido,
+            }
+        })
         if valido:
             return HttpResponse('OK')
         else:

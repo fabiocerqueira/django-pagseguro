@@ -85,6 +85,22 @@ Signals específicos para cada status do pagamento:
     ...
     pagamento_aprovado.connect(liberar_pedido)
 
+Configurando logs
+-----------------
+
+Caso queira configurar os logs, você deve fazer conforme a `documentação do Django sobre a configuração de logs <https://docs.djangoproject.com/en/dev/topics/logging/#configuring-logging>`_, por exemplo: ::
+
+    LOGGING = {
+        ...
+        'loggers': {
+            'django_pagseguro': {
+                'handlers': ['console'],
+                'level': 'INFO',
+            }
+        }
+        ...
+    }
+
 Autor
 ---------
 
