@@ -11,6 +11,7 @@ env:
 
 install:
  - pip install -q Django==$DJANGO_VERSION --use-mirrors
-script: python runtests.py
+ - pip install coveralls
+script: coverage run --source=django_pagseguro runtests.py
 after_success:
   - coveralls
