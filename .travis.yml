@@ -12,3 +12,5 @@ env:
 install:
  - pip install -q Django==$DJANGO_VERSION --use-mirrors
 script: python runtests.py
+after_success:
+  - coveralls
