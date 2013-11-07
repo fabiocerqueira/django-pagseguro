@@ -5,14 +5,14 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-pagseguro',
-    version="1.4",
+    version="1.4.1",
     author='Fábio Cerqueira',
     author_email='cerqueirasfabio@gmail.com',
     maintainer="Fábio Cerqueira",
     maintainer_email="cerqueirasfabio@gmail.com",
     url='http://github.com/fabiocerqueira/django-pagseguro',
     install_requires=[
-        'Django>=1.0'
+        'Django>=1.1'
     ],
     description = 'A pluggable Django application for integrating PagSeguro payment system',
     long_description=open('README.rst').read(),
