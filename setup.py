@@ -1,11 +1,16 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 import os
+import sys
 from setuptools import setup, find_packages
+
+if sys.argv[-1] == 'publish':
+    os.system('python setup.py sdist upload')
+    sys.exit()
 
 setup(
     name='django-pagseguro',
-    version="1.4.1",
+    version="1.4.2",
     author='Fábio Cerqueira',
     author_email='cerqueirasfabio@gmail.com',
     maintainer="Fábio Cerqueira",
