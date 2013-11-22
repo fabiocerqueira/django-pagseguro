@@ -17,5 +17,8 @@
             <input type="hidden" name="item_peso_{{ forloop.counter }}" value="{{ item.peso }}" />
         {% endif %}
     {% endfor %}
+
+    {% block form-body %}
     <input type="image" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/94x52-comprar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+    {% endblock %}
 </form>
