@@ -3,6 +3,7 @@
 import os
 import sys
 from setuptools import setup, find_packages
+from django_pagseguro import __version__
 
 if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
@@ -10,7 +11,7 @@ if sys.argv[-1] == 'publish':
 
 setup(
     name='django-pagseguro',
-    version="1.4.2",
+    version=__version__,
     author='Fábio Cerqueira',
     author_email='cerqueirasfabio@gmail.com',
     maintainer="Fábio Cerqueira",

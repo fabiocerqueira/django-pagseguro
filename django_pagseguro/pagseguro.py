@@ -15,14 +15,18 @@ PAGSEGURO_ERRO_LOG = getattr(settings, 'PAGSEGURO_ERRO_LOG', '')
 
 class ItemPagSeguro(object):
     """
-    ItemPagSeguro é usado no CarrinhoPagSeguro para representar
+    ItemPagSeguro é usado no :class:`CarrinhoPagSeguro <CarrinhoPagSeguro>` para representar
     cada Item de compra.
 
     O frete e o valor são convertidos para formato exigido para o PagSeguro.
     Regra do PagSeguro: valor real * 100.
-        Dinheiro     Decimal/Float       PagSeguro
-        R$ 1,50      1.50                150
-        R$ 32,53     32.53               3253
+        +----------+---------------+-----------+
+        | Dinheiro | Decimal/Float | PagSeguro |
+        +==========+===============+===========+
+        | R$ 1,50  |       1.50    |     150   |
+        +----------+---------------+-----------+
+        | R$ 32,53 |      32.53    |    3253   |
+        +----------+---------------+-----------+
     """
     def __init__(self, cod, descr, quant, valor, frete=0, peso=0):
         """
@@ -59,12 +63,12 @@ class CarrinhoPagSeguro(object):
     oficial do PagSeguro:
         https://pagseguro.uol.com.br/desenvolvedor/carrinho_proprio.jhtml#rmcl
 
-    Configurações de clientes deve ser feita através do método set_cliente.
+    Configurações de clientes deve ser feita através do método :func:`set_cliente <set_cliente>`.
 
-    Para adicionar Items ao carrinho use método add_item.
+    Para adicionar Items ao carrinho use método :func:`add_item <add_item>`.
 
     Para obter o HTML do Form do PagSeguro com o botão de Comprar use
-    o método form.
+    o método :func:`form <form>`.
     """
     def __init__(self, email_cobranca=PAGSEGURO_EMAIL_COBRANCA, **kwargs):
         """
@@ -104,9 +108,9 @@ class CarrinhoPagSeguro(object):
 
     def add_item(self, item):
         """
-        Adiciona um novo ItemPagSeguro ao carrinho.
+        Adiciona um novo item ao carrinho.
 
-        Para mais informações consulte a documentação da classe ItemPagSeguro
+        Para mais informações consulte a documentação da classe :class:`ItemPagSeguro <ItemPagSeguro>`
         """
         self.itens.append(item)
 
@@ -169,7 +173,7 @@ def validar_dados(dados, token=PAGSEGURO_TOKEN, erro_log=PAGSEGURO_ERRO_LOG):
         return True
     else:
         if erro_log:
-            f = open(erro_log, 'a') 
+            f = open(erro_log, 'a')
             f.write("%s - dados: %s - retorno: %s\n" % (time.ctime(), params, retorno))
             f.close()
         return False
