@@ -6,6 +6,8 @@ django-pagseguro
         :target: https://travis-ci.org/fabiocerqueira/django-pagseguro
 .. image:: https://coveralls.io/repos/fabiocerqueira/django-pagseguro/badge.png?branch=master
         :target: https://coveralls.io/r/fabiocerqueira/django-pagseguro?branch=master
+.. image:: https://landscape.io/github/fabiocerqueira/django-pagseguro/master/landscape.png
+        :target: https://landscape.io/github/fabiocerqueira/django-pagseguro/master
 .. image:: https://pypip.in/v/django-pagseguro/badge.png
         :target: https://crate.io/packages/django-pagseguro/
 .. image:: https://pypip.in/d/django-pagseguro/badge.png
