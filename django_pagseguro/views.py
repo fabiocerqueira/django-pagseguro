@@ -24,7 +24,7 @@ def retorno(request):
     os dados com esse encode.
 
     A constante settings.PAGSEGURO_URL_FINAL deve ser configurada com a URL
-    que o usuário será redirecionado após voltar do PagSeguro, pode ser uma
+    para a qual o usuário será redirecionado após voltar do PagSeguro. Pode ser uma
     View de agradecimento ou consulta de recibo/extrato.
     """
     if request.method == 'POST':

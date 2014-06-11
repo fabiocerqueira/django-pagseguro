@@ -10,7 +10,7 @@ def pagseguro_urlpatterns(url_name='django_pagseguro_retorno'):
     """
         URL para o retorno do pagseguro baseado na configuração do settings.
 
-        A configuração da URL de retorno é obrigatória no settings.py, exemplo:
+        A configuração da URL de retorno é obrigatória no settings.py. Por exemplo:
             PAGSEGURO_URL_RETORNO = '/pagseguro/retorno/'
     """
     url_retorno = settings.PAGSEGURO_URL_RETORNO.lstrip('/')

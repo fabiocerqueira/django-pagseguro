@@ -18,7 +18,7 @@ class ItemPagSeguro(object):
     ItemPagSeguro é usado no :class:`CarrinhoPagSeguro <CarrinhoPagSeguro>` para representar
     cada Item de compra.
 
-    O frete e o valor são convertidos para formato exigido para o PagSeguro.
+    O frete e o valor são convertidos para o formato exigido pelo PagSeguro.
     Regra do PagSeguro: valor real * 100.
         +----------+---------------+-----------+
         | Dinheiro | Decimal/Float | PagSeguro |
@@ -30,10 +30,10 @@ class ItemPagSeguro(object):
     """
     def __init__(self, cod, descr, quant, valor, frete=0, peso=0):
         """
-        O parâmetro cod deve ser único por CarrinhoPagSeguro
+        O parâmetro cod deve ser único por CarrinhoPagSeguro.
 
-        Os parâmetros frete e peso são opcionais, os outros são
-        obrigatórios
+        Os parâmetros frete e peso são opcionais. Os demais são
+        obrigatórios.
         """
         self.cod = cod
         self.descr = descr
@@ -58,14 +58,14 @@ class CarrinhoPagSeguro(object):
     As configurações do carrinho, cliente e itens do pedido são definidas
     usando esta classe.
 
-    Os atributos de configuração geral do carrinho são feitas no atributo
-    self.config, os possíveis atributos podem ser encontrados na documentação
+    A configuração geral dos atributos do carrinho é feita no atributo
+    self.config. Os possíveis atributos podem ser encontrados na documentação
     oficial do PagSeguro:
         https://pagseguro.uol.com.br/desenvolvedor/carrinho_proprio.jhtml#rmcl
 
-    Configurações de clientes deve ser feita através do método :func:`set_cliente <set_cliente>`.
+    Configurações do cliente devem ser feitas através do método :func:`set_cliente <set_cliente>`.
 
-    Para adicionar Items ao carrinho use método :func:`add_item <add_item>`.
+    Para adicionar items ao carrinho use método :func:`add_item <add_item>`.
 
     Para obter o HTML do Form do PagSeguro com o botão de Comprar use
     o método :func:`form <form>`.
@@ -91,12 +91,12 @@ class CarrinhoPagSeguro(object):
 
     def set_cliente(self, **kwargs):
         """
-        Define as configurações do cliente, essas informações são opcionais,
-        mas se tiver essa informações é interessante defini-las para facilitar
+        Define as configurações do cliente. Essas informações são opcionais,
+        mas, se existirem essa informações, é interessante defini-las para facilitar
         para o cliente no site do PagSeguro.
 
         Os campos válidos são: nome, cep, end, num, compl, bairro, cidade, uf, pais,
-        ddd, tel, email
+        ddd, tel e email.
 
         IMPORTANTE: Todos os valores devem ser passados como parâmetros nomeados.
         """
@@ -110,7 +110,7 @@ class CarrinhoPagSeguro(object):
         """
         Adiciona um novo item ao carrinho.
 
-        Para mais informações consulte a documentação da classe :class:`ItemPagSeguro <ItemPagSeguro>`
+        Para mais informações, consulte a documentação da classe :class:`ItemPagSeguro <ItemPagSeguro>`
         """
         self.itens.append(item)
 
@@ -118,8 +118,8 @@ class CarrinhoPagSeguro(object):
         """
         Realiza o render do formulário do PagSeguro baseado no template.
 
-        Por padrão o template usado é 'django_pagaseguro/templates/pagseguro_form.html',
-        porém é possível sobreescrever o template ou passar outro template que desejar
+        Por padrão, o template usado é 'django_pagaseguro/templates/pagseguro_form.html',
+        porém é possível sobrescrever o template ou passar outro template que desejar
         como parâmetro.
         """
         form_str = render_to_string(template, vars(self))
@@ -130,7 +130,7 @@ class CarrinhoPagSeguro(object):
 
 
 def _req_pagseguro(params):
-    """ Faz requisição de validação ao PagSeguro """
+    """ Faz uma requisição de validação ao PagSeguro """
     params_encode = urllib.urlencode(params)
     res = urllib.urlopen('https://pagseguro.uol.com.br/Security/NPI/Default.aspx', params_encode)
     retorno = res.read()
@@ -141,25 +141,23 @@ def _req_pagseguro(params):
 def validar_dados(dados, token=PAGSEGURO_TOKEN, erro_log=PAGSEGURO_ERRO_LOG):
     """
     No retorno automático do PagSeguro essa funcão é responsável
-    por validar os dados + token do PagSeguro e emitir o Sinais para
+    por validar os dados + token do PagSeguro e emitir o sinais para
     as outras aplicações.
 
-    Para mais informações sobre o retorno automático e validação do PagSeguro
+    Para mais informações sobre o retorno automático e validação do PagSeguro,
     consulte:
         https://pagseguro.uol.com.br/desenvolvedor/retorno_automatico_de_dados.jhtml#rmcl
 
-    Caso os dados não sejam verificados a função retorna False e se
+    Caso os dados não sejam verificados, a função retorna False. Se
     a constante PAGSEGURO_ERRO_LOG estiver definida com um arquivo de log, as informações
     são gravadas.
-
 
     A constante settings.PAGSEGURO_TOKEN deve ser configurada com TOKEN fornecido pelo
     PagSeguro.
 
-    A constante settings.PAGSEGURO_ERRO_LOG é opcional e deve ser um arquivo com permissão de escrita,
-    exemplo:
+    A constante settings.PAGSEGURO_ERRO_LOG é opcional e deve ser um arquivo com permissão de escrita.
+    Por exemplo:
         PAGSEGURO_ERRO_LOG = '/tmp/pagseguro_erro.log'
-
     """
     params = dados.copy()
     params.update({
