@@ -116,6 +116,7 @@ Colaboradores
 - `Caio Ariede <https://github.com/caioariede>`_
 - `Allisson Azevedo <https://github.com/allisson>`_
 - `Fernando Souza <https://github.com/nandel>`_
+- `Amaury Medeiros <https://github.com/amaurymedeiros>`_
 
 Referências
 -----------
