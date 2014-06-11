@@ -21,16 +21,16 @@ class PagSeguroSignal(object):
     A cada nova requisição do PagSeguro é enviado um signal diferente
     e sempre é enviado o signal pagamento_atualizado.
 
-    O sinais devem ser capturados pela sua aplicação e usar os dados
+    O sinais devem ser capturados pela sua aplicação, que deve usar os dados
     recebidos do PagSeguro.
     """
 
     def __init__(self, dados):
         """
-        Constroi objeto emissor de sinal baseado nos dados da transação do PagSeguro
+        Constrói um objeto emissor de sinal baseado nos dados da transação do PagSeguro.
 
         Os dados enviados pelo PagSeguro devem conter StatusTranscao e Referencia
-        para evirar erros.
+        para evitar erros.
         """
         status = dados['StatusTransacao']
         self.status = normalize('NFKD', status.decode('utf-8')).encode('ASCII','ignore')
@@ -39,16 +39,16 @@ class PagSeguroSignal(object):
 
     def send(self):
         """
-        Envia o sinal padrão para atualização(pagmento_atualizado) de pagamento
+        Envia o sinal padrão para atualização (pagmento_atualizado) de pagamento.
 
-        Faz mapemento entre o StatusTransaco enviado pelo PagSeguro e o Signal
+        Faz mapemento entre o StatusTransacao enviado pelo PagSeguro e o Signal
         correpondente a ser emitido.
         """
         status_map = {
             'Aprovado': pagamento_aprovado,
             'Cancelado': pagamento_cancelado,
             'Aguardando Pagamento': pagamento_aguardando,
-            'Aguardando Pagto': pagamento_aguardando, # PagSeguro uso abreviado em alguns casos
+            'Aguardando Pagto': pagamento_aguardando, # O PagSeguro usa abreviado em alguns casos.
             'Em Analise': pagamento_em_analise,
             'Completo': pagamento_completo,
             'Devolvido': pagamento_devolvido,
