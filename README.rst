@@ -15,6 +15,8 @@ django-pagseguro
 
 Aplicação para facilitar integração do django com pagseguro.
 
+Para versão 2 da API do PagSeguro use: `django-pagseguro2 <https://github.com/allisson/django-pagseguro2>`_
+
 Configurando a app django-pagseguro
 -----------------------------------
 
